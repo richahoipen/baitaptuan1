@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 1</title>
+</head>
+<body>
+    <h1>Tính BMI Mark và John</h1>
+    <p>Nhập dữ liệu về Mark sau:</p>
+    <input type="number" id="khoiLuongMark" placeholder="Nhập khối lượng Mark">
+    <input type="number" id="chieuCaoMark" placeholder="Nhập chiều cao Mark">  
+    <button onclick="tinhBMIMark()">Tính BMI Mark</button>
+    <p id="resultMark"></p>
+    <script>
+        function tinhBMIMark()
+        {
+            var khoiLuong = parseFloat(document.getElementById("khoiLuongMark").value);
+            var chieuCao = parseFloat(document.getElementById("chieuCaoMark").value);
+            var result;
+            if(khoiLuong<=0||chieuCao<=0)
+            {
+                result="Khối lượng hoặc chiều cao phải lớn hơn hoặc bằng 0";
+                document.getElementById("resultMark").innerHTML = result;
+            }
+            else
+            {
+                var bmi=khoiLuong/chieuCao**2;
+                result="BMI Mark="+bmi;
+                document.getElementById("resultMark").innerHTML = result;
+            }
+        }
+    </script>
+    <p>Nhập dữ liệu về John sau:</p>
+    <input type="number" id="khoiLuongJohn" placeholder="Nhập khối lượng John">
+    <input type="number" id="chieuCaoJohn" placeholder="Nhập chiều cao John">  
+    <button onclick="tinhBMIJohn()">Tính BMI Mark</button>
+    <p id="resultJohn"></p>
+    <script>
+        function tinhBMIJohn()
+        {
+            var khoiLuong = parseFloat(document.getElementById("khoiLuongJohn").value);
+            var chieuCao = parseFloat(document.getElementById("chieuCaoJohn").value);
+            var result;
+            if(khoiLuong<=0||chieuCao<=0)
+            {
+                result="Khối lượng hoặc chiều cao phải lớn hơn hoặc bằng 0";
+                document.getElementById("resultJohn").innerHTML = result;
+            }
+            else
+            {
+                var bmi=khoiLuong/chieuCao**2;
+                result="BMI John="+bmi;
+                document.getElementById("resultJohn").innerHTML = result;
+            }
+        }
+    </script>
+    <button onclick="tinhBMIBoth()">Tính BMI Cả 2 và xét kết quả</button>
+    <p id="resultBoth"></p>
+    <p id="resultConclusion"></p>
+    <script>
+        function tinhBMIBoth()
+        {
+            var khoiLuongMark = parseFloat(document.getElementById("khoiLuongMark").value);
+            var chieuCaoMark = parseFloat(document.getElementById("chieuCaoMark").value);
+            var khoiLuongJohn = parseFloat(document.getElementById("khoiLuongJohn").value);
+            var chieuCaoJohn = parseFloat(document.getElementById("chieuCaoJohn").value);
+            var result;
+            var resultConclusion;
+            if(khoiLuongMark<=0||chieuCaoMark<=0||khoiLuongJohn<=0||chieuCaoJohn<=0)
+            {
+                result="Khối lượng hoặc chiều cao phải lớn hơn hoặc bằng 0";
+                document.getElementById("resultConclusion").innerHTML = result;
+            }
+            else
+            {
+                var bmiMark=tinhBMIMark(khoiLuongMark,chieuCaoMark);
+                var bmiJohn=tinhBMIJohn(khoiLuongJohn,chieuCaoJohn);
+                result="BMI Mark="+bmiMark+", BMI John="+bmiJohn;
+                document.getElementById("resultBoth").innerHTML = result;  
+                var bmiHigher=bmiMark-bmiJohn;
+                if(bmiHigher>0)
+                {
+                    resultConclusion="Mark is higher than John about "+bmiHigher+" BMI";
+                    document.getElementById("resultConclusion").innerHTML = resultConclusion; 
+                }  
+                if(bmiHigher==0)
+                {
+                    resultConclusion="Mark is equal than John";
+                    document.getElementById("resultConclusion").innerHTML = resultConclusion; 
+                }
+                if(bmiHigher<0)
+                {
+                    resultConclusion="Mark is less than John about "+(-1)*bmiHigher+" BMI";
+                    document.getElementById("resultConclusion").innerHTML = resultConclusion; 
+                }
+            }
+        }
+        function tinhBMIMark(khoiLuong,chieuCao)
+        {
+            return khoiLuong/chieuCao**2;
+        }
+        function tinhBMIJohn(khoiLuong,chieuCao)
+        {
+            return khoiLuong/chieuCao**2;
+        }
+    </script>
+</body>
+</html>
